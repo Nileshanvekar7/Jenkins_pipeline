@@ -1,0 +1,44 @@
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Source code is available in the workspace'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+                sh 'mkdir -p build'
+                sh 'echo "Build successful" > build/result.txt'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh 'test -s build/result.txt'
+                sh 'grep -q "Build successful" build/result.txt'
+                echo 'All tests passed!'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deployment demonstration completed'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'PIPELINE SUCCESSFUL!'
+        }
+        failure {
+            echo 'PIPELINE FAILED!'
+        }
+    }
+}

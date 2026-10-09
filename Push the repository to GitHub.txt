@@ -1,0 +1,5 @@
+git add .
+git commit -m "Add Jenkins declarative pipeline"
+git branch -M main
+git remote add origin https://github.com/YOUR-USERNAME/jenkins-pipeline-demo.git
+git push -u origin main
